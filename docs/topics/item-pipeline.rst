@@ -179,10 +179,10 @@ returns multiples items with the same id::
             self.ids_seen = set()
 
         def process_item(self, item, spider):
-            if item['id'] in self.ids_seen:
+            if tuple(item['id']) in self.ids_seen:
                 raise DropItem("Duplicate item found: %s" % item)
             else:
-                self.ids_seen.add(item['id'])
+                self.ids_seen.add(tuple(item['id']))
                 return item
 
 
